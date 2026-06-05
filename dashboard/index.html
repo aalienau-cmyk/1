@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Bot Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#c9d1d9;padding:20px;max-width:1200px;margin:0 auto}
+h1{color:#58a6ff;margin-bottom:20px;font-size:1.5rem}
+h2{color:#8b949e;margin:20px 0 10px;font-size:1rem;text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-bottom:20px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:15px}
+.card .label{color:#8b949e;font-size:0.75rem;text-transform:uppercase;letter-spacing:1px}
+.card .value{font-size:1.4rem;font-weight:600;color:#f0f6fc;margin-top:5px}
+.card .value.positive{color:#3fb950}
+.card .value.negative{color:#f85149}
+.card .value.small{font-size:0.9rem}
+table{width:100%;border-collapse:collapse;margin-top:10px;background:#161b22;border-radius:8px;overflow:hidden}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #21262d;font-size:0.85rem}
+th{color:#8b949e;font-weight:600;text-transform:uppercase;font-size:0.7rem;letter-spacing:1px;background:#1c2128}
+tr:hover{background:#21262d}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600}
+.badge-buy{background:#238636;color:#fff}
+.badge-sell{background:#da3633;color:#fff}
+.badge-bull{background:#238636;color:#fff}
+.badge-bear{background:#da3633;color:#fff}
+.badge-neutral{background:#6e7681;color:#fff}
+.badge-started{background:#1f6feb;color:#fff}
+.refresh{color:#6e7681;font-size:0.75rem;margin-top:20px;text-align:center}
+.empty{color:#6e7681;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<h1>🤖 Trading Bot Dashboard</h1>
+
+<div class="grid" id="stats">
+  <div class="card"><div class="label">Equity</div><div class="value" id="equity">--</div></div>
+  <div class="card"><div class="label">Cash</div><div class="value" id="cash">--</div></div>
+  <div class="card"><div class="label">Open Positions</div><div class="value" id="pos-count">--</div></div>
+  <div class="card"><div class="label">Total Trades</div><div class="value" id="trade-count">--</div></div>
+  <div class="card"><div class="label">Last Run</div><div class="value small" id="last-run">--</div></div>
+  <div class="card"><div class="label">Market View</div><div class="value small" id="market-view">--</div></div>
+</div>
+
+<h2>Open Positions</h2>
+<table><thead><tr><th>Symbol</th><th>Qty</th><th>Entry</th><th>Current</th><th>P/L %</th></tr></thead>
+<tbody id="positions-tbody"><tr><td colspan="5" class="empty">Loading...</td></tr></tbody></table>
+
+<h2>Recent Trades</h2>
+<table><thead><tr><th>Time</th><th>Action</th><th>Symbol</th><th>Price</th><th>Qty</th><th>Reason</th><th>PnL</th></tr></thead>
+<tbody id="trades-tbody"><tr><td colspan="7" class="empty">Loading...</td></tr></tbody></table>
+
+<h2>Run Log</h2>
+<table><thead><tr><th>Time</th><th>Status</th><th>Message</th></tr></thead>
+<tbody id="log-tbody"><tr><td colspan="3" class="empty">Loading...</td></tr></tbody></table>
+
+<p class="refresh">Auto-refreshes every 60s. Powered by GitHub Actions + Alpaca Paper Trading.</p>
+
+<script>
+async function loadData() {
+  try {
+    const resp = await fetch('data.json?t=' + Date.now());
+    if (!resp.ok) throw new Error('No data yet');
+    const data = await resp.json();
+    render(data);
+  } catch(e) {
+    console.log('Waiting for first bot run...', e);
+  }
+}
+
+function render(data) {
+  if (data.equity != null) {
+    document.getElementById('equity').textContent = '$' + data.equity.toFixed(2);
+    document.getElementById('cash').textContent = '$' + data.cash.toFixed(2);
+  }
+  const positions = data.positions || [];
+  document.getElementById('pos-count').textContent = positions.length;
+  const ptbody = document.getElementById('positions-tbody');
+  if (positions.length === 0) {
+    ptbody.innerHTML = '<tr><td colspan="5" class="empty">No open positions</td></tr>';
+  } else {
+    ptbody.innerHTML = positions.map(p => {
+      const cur = parseFloat(p.current_price||0);
+      const ent = parseFloat(p.avg_entry_price||0);
+      const pl = ent > 0 ? ((cur - ent) / ent * 100) : 0;
+      const cls = pl >= 0 ? 'positive' : 'negative';
+      return '<tr><td>' + p.symbol + '</td><td>' + parseFloat(p.qty).toFixed(4) + '</td><td>$' + ent.toFixed(4) + '</td><td>$' + cur.toFixed(4) + '</td><td class="' + cls + '">' + (pl>=0?'+':'') + pl.toFixed(2) + '%</td></tr>';
+    }).join('');
+  }
+  const trades = data.trades || [];
+  document.getElementById('trade-count').textContent = trades.length;
+  const ttbody = document.getElementById('trades-tbody');
+  if (trades.length === 0) {
+    ttbody.innerHTML = '<tr><td colspan="7" class="empty">No trades yet</td></tr>';
+  } else {
+    ttbody.innerHTML = trades.slice(-20).reverse().map(t => {
+      const badge = t.action === 'buy' ? 'badge-buy' : 'badge-sell';
+      const time = t.timestamp ? t.timestamp.replace('T',' ').substring(0,19) : '--';
+      const pnlClass = t.pnl > 0 ? 'positive' : t.pnl < 0 ? 'negative' : '';
+      return '<tr><td>' + time + '</td><td><span class="badge ' + badge + '">' + t.action.toUpperCase() + '</span></td><td>' + t.symbol + '</td><td>$' + (t.price ? parseFloat(t.price).toFixed(4) : '--') + '</td><td>' + (t.qty ? parseFloat(t.qty).toFixed(4) : '--') + '</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + (t.reason || '--') + '</td><td class="' + pnlClass + '">' + (t.pnl ? '$'+parseFloat(t.pnl).toFixed(2) : '--') + '</td></tr>';
+    }).join('');
+  }
+  if (data.last_run) document.getElementById('last-run').textContent = data.last_run;
+  if (data.market_view) document.getElementById('market-view').textContent = data.market_view;
+  const logs = data.run_log || [];
+  const ltbody = document.getElementById('log-tbody');
+  if (logs.length === 0) {
+    ltbody.innerHTML = '<tr><td colspan="3" class="empty">No runs yet</td></tr>';
+  } else {
+    ltbody.innerHTML = logs.slice(-10).reverse().map(r => {
+      const time = r.timestamp ? r.timestamp.replace('T',' ').substring(0,19) : '--';
+      const cls = r.status === 'completed' ? 'badge-bull' : r.status === 'error' ? 'badge-sell' : r.status === 'started' ? 'badge-started' : 'badge-neutral';
+      return '<tr><td>' + time + '</td><td><span class="badge ' + cls + '">' + r.status + '</span></td><td>' + (r.message || '--') + '</td></tr>';
+    }).join('');
+  }
+}
+
+loadData();
+setInterval(loadData, 60000);
+</script>
+</body>
+</html>

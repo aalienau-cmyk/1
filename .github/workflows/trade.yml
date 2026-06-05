@@ -1,0 +1,33 @@
+name: Trading Bot
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour at minute 0
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run trading bot
+        env:
+          APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
+          APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
+        run: python bot/trading_bot.py
+
+      - name: Commit data
+        run: |
+          git config user.name "Trading Bot"
+          git config user.email "bot@trading.local"
+          git add data/trading.db dashboard/data.json
+          git diff --cached --quiet || git commit -m "Update trading data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push

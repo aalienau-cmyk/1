@@ -1,0 +1,141 @@
+{
+  "equity": 48.7,
+  "cash": 48.7,
+  "positions": [],
+  "market_view": "NEUTRAL: 0 bull, 1 bear. Avg 7d: -0.1%. Wait for setups.",
+  "last_run": "2026-06-05T07:40:45.146000",
+  "trades": [
+    {
+      "id": 2,
+      "timestamp": "2026-06-05T07:24:23.976399",
+      "action": "sell",
+      "symbol": "SOLUSD",
+      "price": 64.811,
+      "qty": 0.142155009,
+      "notional": null,
+      "tp_price": null,
+      "sl_price": null,
+      "confidence": null,
+      "reason": "stop_loss_hit",
+      "pnl": -0.55
+    },
+    {
+      "id": 1,
+      "timestamp": "2026-06-05T07:24:23.629447",
+      "action": "sell",
+      "symbol": "DOGEUSD",
+      "price": 0.08334,
+      "qty": 165.166726495,
+      "notional": null,
+      "tp_price": null,
+      "sl_price": null,
+      "confidence": null,
+      "reason": "stop_loss_hit",
+      "pnl": -0.9
+    }
+  ],
+  "run_log": [
+    {
+      "id": 17,
+      "timestamp": "2026-06-05T07:40:26.717848",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 16,
+      "timestamp": "2026-06-05T07:39:10.034112",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 15,
+      "timestamp": "2026-06-05T07:39:08.567496",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 14,
+      "timestamp": "2026-06-05T07:37:00.537118",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 13,
+      "timestamp": "2026-06-05T07:36:59.084219",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 12,
+      "timestamp": "2026-06-05T07:35:46.966663",
+      "status": "error",
+      "message": "401 Client Error: Unauthorized for url: https://paper-api.alpaca.markets/v2/account"
+    },
+    {
+      "id": 11,
+      "timestamp": "2026-06-05T07:35:46.604989",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 10,
+      "timestamp": "2026-06-05T07:35:31.749079",
+      "status": "error",
+      "message": "401 Client Error: Unauthorized for url: https://paper-api.alpaca.markets/v2/account"
+    },
+    {
+      "id": 9,
+      "timestamp": "2026-06-05T07:35:31.367229",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 8,
+      "timestamp": "2026-06-05T07:35:07.647066",
+      "status": "error",
+      "message": "401 Client Error: Unauthorized for url: https://paper-api.alpaca.markets/v2/account"
+    },
+    {
+      "id": 7,
+      "timestamp": "2026-06-05T07:35:07.268832",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 6,
+      "timestamp": "2026-06-05T07:32:31.031496",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 5,
+      "timestamp": "2026-06-05T07:32:29.177939",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-06-05T07:24:31.611274",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-06-05T07:24:22.554846",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-06-04T22:22:08.455968",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 1,
+      "timestamp": "2026-06-04T22:21:56.130551",
+      "status": "started",
+      "message": "Bot run initiated"
+    }
+  ]
+}
