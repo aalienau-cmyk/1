@@ -228,8 +228,9 @@ def compute_bollinger(closes, period=20, std_mult=2):
     std = var ** 0.5
     return round(sma + std_mult * std, 4), round(sma, 4), round(sma - std_mult * std, 4)
 
-def analyze_symbol(symbol):
-    bars = get_crypto_bars(symbol)
+def analyze_symbol(symbol, bars=None):
+    if bars is None:
+        bars = get_crypto_bars(symbol)
     if not bars or len(bars) < 26:
         return None
     closes = [float(b["c"]) for b in bars]
