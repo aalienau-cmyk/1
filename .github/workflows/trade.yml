@@ -35,6 +35,6 @@ jobs:
         run: |
           git config user.name "Trading Bot"
           git config user.email "bot@trading.local"
-          git add data/trading.db dashboard/data.json
+          git add data/trading.db docs/data.json
           git diff --cached --quiet || git commit -m "Update trading data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push

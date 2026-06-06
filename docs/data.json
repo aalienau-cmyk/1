@@ -1,0 +1,159 @@
+{
+  "equity": 48.7,
+  "cash": 48.7,
+  "positions": [],
+  "market_view": "NEUTRAL: 1 bull, 4 bear. Avg 7d: -2.8%. Wait for setups.",
+  "last_run": "2026-06-06T16:36:22.143208",
+  "trades": [
+    {
+      "id": 2,
+      "timestamp": "2026-06-05T07:24:23.976399",
+      "action": "sell",
+      "symbol": "SOLUSD",
+      "price": 64.811,
+      "qty": 0.142155009,
+      "notional": null,
+      "tp_price": null,
+      "sl_price": null,
+      "confidence": null,
+      "reason": "stop_loss_hit",
+      "pnl": -0.55
+    },
+    {
+      "id": 1,
+      "timestamp": "2026-06-05T07:24:23.629447",
+      "action": "sell",
+      "symbol": "DOGEUSD",
+      "price": 0.08334,
+      "qty": 165.166726495,
+      "notional": null,
+      "tp_price": null,
+      "sl_price": null,
+      "confidence": null,
+      "reason": "stop_loss_hit",
+      "pnl": -0.9
+    }
+  ],
+  "run_log": [
+    {
+      "id": 27,
+      "timestamp": "2026-06-06T16:36:18.357667",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 26,
+      "timestamp": "2026-06-06T16:24:18.243670",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 25,
+      "timestamp": "2026-06-06T16:24:09.913316",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 24,
+      "timestamp": "2026-06-06T16:18:26.710727",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 23,
+      "timestamp": "2026-06-06T16:18:25.026087",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 22,
+      "timestamp": "2026-06-06T16:14:33.196883",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 21,
+      "timestamp": "2026-06-06T16:14:26.747058",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 20,
+      "timestamp": "2026-06-06T16:09:45.216995",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 19,
+      "timestamp": "2026-06-06T16:09:37.916045",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 18,
+      "timestamp": "2026-06-05T07:40:45.206660",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 17,
+      "timestamp": "2026-06-05T07:40:26.717848",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 16,
+      "timestamp": "2026-06-05T07:39:10.034112",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 15,
+      "timestamp": "2026-06-05T07:39:08.567496",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 14,
+      "timestamp": "2026-06-05T07:37:00.537118",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
+    {
+      "id": 13,
+      "timestamp": "2026-06-05T07:36:59.084219",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 12,
+      "timestamp": "2026-06-05T07:35:46.966663",
+      "status": "error",
+      "message": "401 Client Error: Unauthorized for url: https://paper-api.alpaca.markets/v2/account"
+    },
+    {
+      "id": 11,
+      "timestamp": "2026-06-05T07:35:46.604989",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 10,
+      "timestamp": "2026-06-05T07:35:31.749079",
+      "status": "error",
+      "message": "401 Client Error: Unauthorized for url: https://paper-api.alpaca.markets/v2/account"
+    },
+    {
+      "id": 9,
+      "timestamp": "2026-06-05T07:35:31.367229",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 8,
+      "timestamp": "2026-06-05T07:35:07.647066",
+      "status": "error",
+      "message": "401 Client Error: Unauthorized for url: https://paper-api.alpaca.markets/v2/account"
+    }
+  ]
+}

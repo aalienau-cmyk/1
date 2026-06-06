@@ -3,7 +3,7 @@
 import json, sqlite3, os
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "trading.db")
-OUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "dashboard", "data.json")
+OUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "docs", "data.json")
 
 if not os.path.exists(DB_PATH):
     print("No DB found yet.")
