@@ -5,11 +5,18 @@ on:
     - cron: '0 * * * *'  # Every hour at minute 0
   workflow_dispatch:  # Manual trigger
 
+# Required permissions for git push
+permissions:
+  contents: write
+
 jobs:
   trade:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:
