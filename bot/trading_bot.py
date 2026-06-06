@@ -26,7 +26,7 @@ SYMBOLS = [
     "BTC/USD", "SOL/USD", "ETH/USD", "DOGE/USD", "ADA/USD",
     "AVAX/USD", "LINK/USD", "DOT/USD", "LDO/USD", "ARB/USD",
     "XRP/USD", "LTC/USD", "BCH/USD", "UNI/USD", "AAVE/USD",
-    "CRV/USD", "GRT/USD", "FIL/USD", "ICP/USD", "ALGO/USD",
+    "CRV/USD", "GRT/USD", "FIL/USD", "HBAR/USD", "VET/USD",
 ]
 PARAMS = {
     "stop_loss_pct": 0.05,
