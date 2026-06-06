@@ -454,17 +454,26 @@ def main():
         # [4] Market Scan
         print("\n[4] Market Scan...")
         analyses = []
+        failed = []
         for i, sym in enumerate(SYMBOLS):
             try:
-                a = analyze_symbol(sym)
+                bars = get_crypto_bars(sym)
+                if not bars:
+                    failed.append(f"{sym}(no bars)")
+                    continue
+                a = analyze_symbol(sym, bars)
                 if a:
                     analyses.append(a)
-                # Rate limit: max ~5 per second to stay safe
-                if (i + 1) % 5 == 0:
-                    time.sleep(1)
+                else:
+                    failed.append(f"{sym}(no analysis)")
+                # Rate limit: small delay every 3 requests
+                if (i + 1) % 3 == 0:
+                    time.sleep(0.5)
             except Exception as e:
-                print(f"    WARN: {sym}: {e}")
+                failed.append(f"{sym}({str(e)[:40]})")
         print(f"    Scanned {len(analyses)}/{len(SYMBOLS)} coins")
+        if failed:
+            print(f"    Failed: {', '.join(failed)}")
 
         top = sorted(analyses, key=lambda x: x.get("change_1d", 0), reverse=True)[:10]
         for a in top:
