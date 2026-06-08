@@ -3,7 +3,7 @@
   "cash": 48.7,
   "positions": [],
   "market_view": "NEUTRAL: 0 bull, 7 bear. Avg 7d: -4.1%. Wait for setups.",
-  "last_run": "2026-06-08T20:18:35.994602",
+  "last_run": "2026-06-08T22:27:21.574973",
   "trades": [
     {
       "id": 2,
@@ -35,6 +35,18 @@
     }
   ],
   "run_log": [
+    {
+      "id": 73,
+      "timestamp": "2026-06-08T22:27:15.459218",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 72,
+      "timestamp": "2026-06-08T20:18:36.017220",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
     {
       "id": 71,
       "timestamp": "2026-06-08T20:18:30.470487",
@@ -140,18 +152,6 @@
     {
       "id": 54,
       "timestamp": "2026-06-07T16:17:35.572805",
-      "status": "completed",
-      "message": "Bot run completed successfully"
-    },
-    {
-      "id": 53,
-      "timestamp": "2026-06-07T16:17:30.821524",
-      "status": "started",
-      "message": "Bot run initiated"
-    },
-    {
-      "id": 52,
-      "timestamp": "2026-06-07T14:53:22.724901",
       "status": "completed",
       "message": "Bot run completed successfully"
     }
