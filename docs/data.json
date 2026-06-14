@@ -3,7 +3,7 @@
   "cash": 48.7,
   "positions": [],
   "market_view": "BEARISH: 17/18 downtrend. Avg 7d: -9.9%. Capital preservation.",
-  "last_run": "2026-06-14T14:03:48.653936",
+  "last_run": "2026-06-14T16:22:20.420622",
   "trades": [
     {
       "id": 2,
@@ -35,6 +35,18 @@
     }
   ],
   "run_log": [
+    {
+      "id": 159,
+      "timestamp": "2026-06-14T16:22:14.533113",
+      "status": "started",
+      "message": "Bot run initiated"
+    },
+    {
+      "id": 158,
+      "timestamp": "2026-06-14T14:03:48.680080",
+      "status": "completed",
+      "message": "Bot run completed successfully"
+    },
     {
       "id": 157,
       "timestamp": "2026-06-14T14:03:43.463336",
@@ -140,18 +152,6 @@
     {
       "id": 140,
       "timestamp": "2026-06-13T12:26:24.576884",
-      "status": "completed",
-      "message": "Bot run completed successfully"
-    },
-    {
-      "id": 139,
-      "timestamp": "2026-06-13T12:26:13.043589",
-      "status": "started",
-      "message": "Bot run initiated"
-    },
-    {
-      "id": 138,
-      "timestamp": "2026-06-13T10:29:42.295035",
       "status": "completed",
       "message": "Bot run completed successfully"
     }
